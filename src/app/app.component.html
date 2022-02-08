@@ -1,0 +1,24 @@
+<!--<app-header></app-header>
+<router-outlet></router-outlet>
+-->
+
+<mat-sidenav-container class="all-wrap">
+
+  <mat-sidenav #sidenav side [opened]="commonStateService.toogleSearchSideNav$ | async"
+  (closed)="onCloseSideNav()"
+  >
+    <app-search-list (sidenavAction)="sidenav.toggle()"></app-search-list>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content class="page-wrap img-bg">
+    <app-header (sidenavAction)="sidenav.open()"></app-header>
+
+    <main class="content">
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
+
+

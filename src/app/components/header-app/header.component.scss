@@ -1,0 +1,34 @@
+
+.header-spacer {
+  flex: 1 1 auto;
+}
+.header-item{
+ margin: 0 5px;
+}
+
+.sticky-toolbar {
+position: sticky;
+top: 0;
+
+}
+.container {
+  color: #5f6368;
+}
+
+.fixedElement {
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  z-index: 10;
+  height: 60px;
+}
+
+
+
+.mat-toolbar {
+
+  background-image: linear-gradient(120deg, #44aada, #79c1ce);
+  color: white;
+  span { margin-right: 2rem; }
+  h1 { font-size: 1.2em; }
+}

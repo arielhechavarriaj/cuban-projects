@@ -1,0 +1,73 @@
+<div class="container-app">
+  <div class="loading" *ngIf="commonStateService.loading$ | async">
+    <app-loading></app-loading>
+  </div>
+  <div class="label-nav">
+    <div>
+      <mat-card-title> {{ projects.length }} projects </mat-card-title>
+      <mat-card-subtitle
+        >{{ _categorySelected.description }}
+        <button mat-icon-button color="primary" (click)="onClearCategory()">
+          <mat-icon >delete_sweep</mat-icon>
+        </button>
+      </mat-card-subtitle>
+    </div>
+  </div>
+
+  <div *ngIf="notFound" class="notFound">
+    <h1>Category:{{ _categorySelected.description}}</h1>
+    <p class="zoom-area">There are no projects in this category</p>
+    <section class="error-container">
+      <span>4</span>
+      <span><span class="screen-reader-text">0</span></span>
+      <span>4</span>
+    </section>
+    <div class="link-container">
+      <button mat-raised-button [routerLink]="['/']">
+        <mat-icon>home</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="card-containers" *ngIf="projects.length != 0">
+    <mat-card class="project-card" *ngFor="let project of projects">
+      <mat-card-header style="height: 80px">
+        <mat-icon mat-card-avatar class="mat-18">{{_categorySelected.icon}}</mat-icon>
+        <mat-card-title>{{ project.name }} </mat-card-title>
+        <mat-card-subtitle>{{ _categorySelected.name }}</mat-card-subtitle>
+      </mat-card-header>
+      <img
+        mat-card-image
+        style="height: 120px"
+        [src]="project.image"
+        (load)="onLoadImage(project)"
+        [hidden]="!project.loadImage"
+      />
+
+
+      <div class="loading" *ngIf="!project.loadImage">
+        <mat-progress-spinner
+          mode="indeterminate"
+          [value]="4"
+          color="primary"
+        ></mat-progress-spinner>
+        <app-loading></app-loading>
+      </div>
+
+      <mat-card-content>
+        <p class="mat-elevation-Z2">
+          {{ project.description }}
+        </p>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <button
+          [routerLink]="['/details', project.id]"
+          color=""
+          mat-raised-button
+        >
+          Details <mat-icon>info</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

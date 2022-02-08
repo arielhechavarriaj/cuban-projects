@@ -1,0 +1,19 @@
+<div class="container">
+  <mat-toolbar class="fixedElement mat-elevation-z10" [style.opacity]="opacity">
+    <span>
+      <button mat-icon-button>
+        <mat-icon (click)="onSidenav()">manage_search </mat-icon>
+      </button>
+
+      <button mat-icon-button>
+        <mat-icon [routerLink]="['/']">home</mat-icon>
+      </button>
+    </span>
+
+    {{ title }}
+
+    <button mat-icon-button class="header-item" (click)="openGithub()">
+      <mat-icon svgIcon="github"></mat-icon>
+    </button>
+  </mat-toolbar>
+</div>

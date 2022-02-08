@@ -1,0 +1,23 @@
+<div class="loading" *ngIf="commonStateService.loading$ | async">
+  <app-loading></app-loading>
+</div>
+<div class="nav">
+  <button style="display: flex; justify-content: space-between;" (click)="  onBackToProjects()"mat-raised-button ><mat-icon color="primary">backspace</mat-icon> Projects</button>
+
+</div>
+<mat-card class="example-card" *ngIf="!(commonStateService.loading$ | async)">
+  <mat-card-header>
+  </mat-card-header>
+  <img mat-card-image [src]="group.image">
+
+  <mat-card-content>
+    <p>
+   {{group.description}}
+    </p>
+  </mat-card-content>
+  <mat-card-actions align="end">
+
+    <button mat-raised-button color="primary" (click)="openGithub(group)">Visit website</button>
+  </mat-card-actions>
+</mat-card>
+

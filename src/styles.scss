@@ -1,0 +1,52 @@
+
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import '~material-icons/iconfont/material-icons.css';
+
+body {
+  margin: 0;
+  width: 100%;
+  background-color: #44aada;
+  background-image: linear-gradient(120deg, #44aada, #79c1ce);
+  color: white;
+}
+
+
+mat-sidenav { width: 30vw; }
+mat-list-item { cursor: pointer; }
+
+
+
+.home {
+  margin: 1.7vw 0 0;
+  button.color-font { color: #4d4daa; }
+}
+.info-card {
+  margin: 1vh 1.7vw;
+  color: #7b2f94;
+}
+
+
+
+
+//Agregando un estilo personalizado para el scrollbar
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px #0f6777;
+  border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #79c1ce;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #2aa389;
+}

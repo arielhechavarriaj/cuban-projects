@@ -1,0 +1,50 @@
+/*
+ * Actual Sticky Footer Styles
+ */
+
+ .all-wrap {
+  background-image: linear-gradient(120deg, #44aada, #79c1ce);
+  color: white;
+
+  min-height: 100vh; // same height as browser window height
+}
+
+.page-wrap {
+
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; // same height as browser window height
+}
+
+.content {
+  background-image: linear-gradient(120deg, #44aada, #79c1ce);
+  color: white;
+margin-top: 80px;
+  flex: 1; // child will set to an equal size inside the container
+}
+
+
+/*
+ * Make the component injected by <router-outlet> full height:
+ */
+
+main {
+
+  display: flex;
+  flex-direction: column;
+
+  // Select all direct descendants only of the <main> element
+  // that are not <router-outlet> elements:
+  > *:not(router-outlet) {
+
+    flex: 1; // child will set to an equal size inside the container
+    display: block;
+
+  }
+
+}
+
+
+mat-sidenav{
+  width: auto;
+}

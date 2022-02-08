@@ -1,0 +1,37 @@
+<div class="container">
+ <!-- <mat-form-field class="search-input__field mat-elevation-z1">
+    <mat-label></mat-label>
+    <input
+      #searchQueryInput
+      id="searchInput"
+      matInput
+      tabindex="1"
+      type="text"
+      autofocus
+      (keydown.enter)="onSearch($event, true)"
+      (keyup)="onKeyUp(searchQueryInput.value)"
+      (change)="onChange()"
+      [value]="searchQuery"
+      [maxLength]="255"
+      placeholder="Search a Project categories..."
+      class="searchQuery-input"
+    />
+
+
+      <mat-icon   style="margin-right: 10px; margin-top: 5px;"    matSuffix  class="btn-search" >search</mat-icon>
+  </mat-form-field>
+   -->
+  <div class="list-projects">
+      <button
+        mat-raised-button
+        *ngFor="let category of categories"
+        class="label-button"
+        (click)="onCategorySelect(category)"
+      >
+        <mat-icon>{{ category.icon}}</mat-icon>
+        <span>
+          {{ category.description }}
+        </span>
+      </button>
+  </div>
+</div>

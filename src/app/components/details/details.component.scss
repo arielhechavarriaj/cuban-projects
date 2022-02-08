@@ -1,0 +1,13 @@
+:host
+{
+  height: calc( 100% - 50px);
+  overflow: auto;
+  padding:40px;
+  word-break: break-all;
+}
+.nav
+{
+  display: flex;
+  justify-content: flex-start;
+  padding: 5px;
+}
