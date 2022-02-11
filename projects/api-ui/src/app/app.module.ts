@@ -21,6 +21,7 @@ import { ApiService } from './shared/api.service';
 
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CubanAPIService } from './shared/cubanApi.service.service';
 
 
 
@@ -40,7 +41,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [ApiService],
+  providers: [CubanAPIService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

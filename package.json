@@ -34,6 +34,7 @@
     "ngx-loading": "^8.0.0",
     "ngx-skeleton-loader": "^4.0.0",
     "prettier": "^2.5.1",
+    "roboto-npm-webfont": "^1.0.1",
     "rxjs": "~7.4.0",
     "screenfull": "^6.0.1",
     "tslib": "^2.3.0",

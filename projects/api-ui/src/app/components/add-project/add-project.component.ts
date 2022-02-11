@@ -1,9 +1,12 @@
+
 import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
-import { ApiService } from '../../shared/api.service';
+
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { CubanAPIService } from '../../shared/cubanApi.service.service';
+import { category } from '../../shared/interfaces';
 
 export interface Subject {
   name: string;
@@ -12,7 +15,7 @@ export interface Subject {
 @Component({
   selector: 'app-add-project',
   templateUrl: './add-project.component.html',
-  styleUrls: ['./add-project.component.css']
+  styleUrls: ['./add-project.component.scss']
 })
 
 export class AddProjectComponent implements OnInit {
@@ -25,7 +28,7 @@ export class AddProjectComponent implements OnInit {
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   projectForm!: FormGroup;
   subjectArray: Subject[] = [];
-  SectioinArray: any = ['A', 'B', 'C', 'D', 'E'];
+  categories: category []=[];
 
   ngOnInit() {
     this.submitBookForm();
@@ -35,51 +38,29 @@ export class AddProjectComponent implements OnInit {
     public fb: FormBuilder,
     private router: Router,
     private ngZone: NgZone,
-    private projectApi: ApiService
-  ) { }
+    private projectApi: CubanAPIService
+  ) {
 
+
+       /**Get all the categories from the service */
+       this.projectApi.getCategories().subscribe((response: any) => {
+        this.categories = response;
+
+      });
+   }
   /* Reactive book form */
   submitBookForm() {
     this.projectForm = this.fb.group({
-      project_name: ['', [Validators.required]],
-      project_email: ['', [Validators.required]],
-      section: ['', [Validators.required]],
-      subjects: [this.subjectArray],
-      dob: ['', [Validators.required]],
-      gender: ['Male']
+      name: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+      category: ['', [Validators.required]],
+      url: [this.subjectArray, [Validators.required]]
     })
   }
 
-  /* Add dynamic languages */
-  add(event: MatChipInputEvent): void {
-    const input = event.input;
-    const value = event.value;
-    // Add language
-    if ((value || '').trim() && this.subjectArray.length < 5) {
-      this.subjectArray.push({ name: value.trim() })
-    }
-    // Reset the input value
-    if (input) {
-      input.value = '';
-    }
-  }
 
-  /* Remove dynamic languages */
-  remove(subject: Subject): void {
-    const index = this.subjectArray.indexOf(subject);
-    if (index >= 0) {
-      this.subjectArray.splice(index, 1);
-    }
-  }
 
-  /* Date */
-  formatDate(e: { target: { value: string | number | Date; }; }) {
-    var convertDate = new Date(e.target.value).toISOString().substring(0, 10);
 
-  /*  this.projectForm.get('dob').setValue(convertDate, {
-      onlyself: true
-    })*/
-  }
 
   /* Get errors */
   public handleError = (controlName: string, errorName: string) => {
@@ -89,9 +70,13 @@ export class AddProjectComponent implements OnInit {
   /* Submit book */
   submitProjectForm() {
     if (this.projectForm.valid) {
-      this.projectApi.AddProject(this.projectForm.value).subscribe(res => {
-        this.ngZone.run(() => this.router.navigateByUrl('/projects-list'))
+
+      this.projectApi.createProject(this.projectForm.value).subscribe(res => {
+        this.router.navigateByUrl('/list')
+
       });
+
+
     }
   }
 

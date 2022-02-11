@@ -1,8 +1,10 @@
 <!-- Toolbar -->
-<mat-toolbar color="primary" class="header">
-  <div>Student Records</div>
-  <span class="nav-tool-items">
-    <mat-icon (click)="sidenav.toggle()" class="hamburger">menu</mat-icon>
+<mat-toolbar  class="header">
+
+  <mat-icon (click)="sidenav.toggle()" >menu</mat-icon>
+  <div>Projects Records</div>
+  <span >
+
   </span>
 </mat-toolbar>
 
@@ -11,11 +13,11 @@
   <mat-sidenav #sidenav [mode]="isBiggerScreen() ? 'over' : 'side'" [(opened)]="opened" [fixedInViewport]="true"
     [fixedTopGap]>
     <mat-nav-list>
-      <a mat-list-item routerLinkActive="active" routerLink="/add-student">
-        <mat-icon>add</mat-icon> Add Student
+      <a mat-list-item routerLinkActive="active" routerLink="/add">
+        <mat-icon>add</mat-icon> Add Project
       </a>
-      <a mat-list-item routerLinkActive="active" routerLink="/students-list">
-        <mat-icon>format_list_bulleted</mat-icon> View Students
+      <a mat-list-item routerLinkActive="active" routerLink="/list">
+        <mat-icon>format_list_bulleted</mat-icon> View Projects
       </a>
     </mat-nav-list>
   </mat-sidenav>

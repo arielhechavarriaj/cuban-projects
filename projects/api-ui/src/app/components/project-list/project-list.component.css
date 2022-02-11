@@ -1,0 +1,30 @@
+.mat-column-name{
+  width: 450px;
+align-items: center;
+padding: 10px;
+}
+.mat-column-description{
+  width: 600px;
+align-items: center;
+padding: 10px;
+}
+.mat-column-category{
+  width: 150px;
+align-items: center;
+padding: 10px;
+}
+.mat-column-url{
+  width: 150px;
+align-items: center;
+padding: 10px;
+}
+
+.mat-column-image{
+  width: 150px;
+align-items: center;
+padding: 10px;
+}
+
+table{
+  margin-bottom:100px;
+}

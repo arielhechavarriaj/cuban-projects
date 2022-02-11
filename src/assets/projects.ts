@@ -11,12 +11,16 @@ export interface category {
   "description": string;
   "name"?: string;
   icon?: string;
+  id:string;
+
 }
 export interface Project {
   id: string;
   "name": string;
   "url": string;
   "description": string;
+  category:category
+
 }
 export const ProjectscubanOpenSourceDATA: any[] = [
   {

@@ -1,9 +1,11 @@
+
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { ApiService } from '../../shared/api.service';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { CubanAPIService } from '../../shared/cubanApi.service.service';
 
 export interface Subject {
   name: string;
@@ -25,7 +27,7 @@ export class EditProjectComponent implements OnInit {
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   projectForm!: FormGroup;
   subjectArray: Subject[] = [];
-  SectioinArray: any = ['A', 'B', 'C', 'D', 'E'];
+  categories: any[] = [];
 
   ngOnInit() {
     this.updateBookForm();
@@ -36,64 +38,39 @@ export class EditProjectComponent implements OnInit {
     private router: Router,
     private ngZone: NgZone,
     private actRoute: ActivatedRoute,
-    private projectApi: ApiService
+    private projectApi: CubanAPIService
   ) {
     var id = this.actRoute.snapshot.paramMap.get('id');
-    this.projectApi.GetProject(id).subscribe((data: { subjects: Subject[]; project_name: any; project_email: any; section: any; dob: any; gender: any; }) => {
-      console.log(data.subjects)
-      this.subjectArray = data.subjects;
+    this.projectApi.getProjectByID(id).subscribe(data => {
+console.log(data)
       this.projectForm = this.fb.group({
-        project_name: [data.project_name, [Validators.required]],
-        project_email: [data.project_email, [Validators.required]],
-        section: [data.section, [Validators.required]],
-        subjects: [data.subjects],
-        dob: [data.dob, [Validators.required]],
-        gender: [data.gender]
+        name: [data.name, [Validators.required]],
+        description: [data.description],
+        category: [data.category.id, [Validators.required]],
+        url: [data.url]
       })
     })
+
+
+       /**Get all the categories from the service */
+       this.projectApi.getCategories().subscribe((response: any) => {
+        this.categories = response;
+
+      });
+
   }
 
   /* Reactive book form */
   updateBookForm() {
     this.projectForm = this.fb.group({
-      project_name: ['', [Validators.required]],
-      project_email: ['', [Validators.required]],
-      section: ['', [Validators.required]],
-      subjects: [this.subjectArray],
-      dob: ['', [Validators.required]],
-      gender: ['Male']
+      name: ['', [Validators.required]],
+      description: [''],
+      category: ['', [Validators.required]],
+      url: [this.subjectArray]
     })
   }
 
-  /* Add dynamic languages */
-  add(event: MatChipInputEvent): void {
-    const input = event.input;
-    const value = event.value;
-    // Add language
-    if ((value || '').trim() && this.subjectArray.length < 5) {
-      this.subjectArray.push({ name: value.trim() })
-    }
-    // Reset the input value
-    if (input) {
-      input.value = '';
-    }
-  }
 
-  /* Remove dynamic languages */
-  remove(subject: Subject): void {
-    const index = this.subjectArray.indexOf(subject);
-    if (index >= 0) {
-      this.subjectArray.splice(index, 1);
-    }
-  }
-
-  /* Date */
-  formatDate(e: { target: { value: string | number | Date; }; }) {
-    var convertDate = new Date(e.target.value).toISOString().substring(0, 10);
-  /*  this.projectForm.get('dob').setValue(convertDate, {
-      onlyself: true
-    })*/
-  }
 
   /* Get errors */
   public handleError = (controlName: string, errorName: string) => {
@@ -105,8 +82,8 @@ export class EditProjectComponent implements OnInit {
     console.log(this.projectForm.value)
     var id = this.actRoute.snapshot.paramMap.get('id');
     if (window.confirm('Are you sure you want to update?')) {
-      this.projectApi.UpdateProject(id, this.projectForm.value).subscribe( res => {
-        this.ngZone.run(() => this.router.navigateByUrl('/projects-list'))
+      this.projectApi.updateProject(id, this.projectForm.value).subscribe( res => {
+        this.ngZone.run(() => this.router.navigateByUrl('/list'))
       });
     }
   }

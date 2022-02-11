@@ -10,7 +10,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 
 export class ApiService {
 
-  endpoint: string = 'http://localhost:8000/api';
+  endpoint: string = 'http://localhost:3000/projects';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
 
   constructor(private http: HttpClient) { }
@@ -28,6 +28,13 @@ export class ApiService {
   GetProjects() {
     return this.http.get(`${this.endpoint}`);
   }
+
+
+    // Get all categories
+    GetCategories() {
+      return this.http.get(`http://localhost:3000/category`);
+    }
+
 
   // Get project
   GetProject(id:any): Observable<any> {
