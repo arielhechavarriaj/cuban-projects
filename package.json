@@ -32,8 +32,6 @@
     "express": "^4.17.3",
     "material-icons": "^1.10.6",
     "ng-animate": "^1.0.0",
-    "ngx-loading": "^8.0.0",
-    "ngx-skeleton-loader": "^4.0.0",
     "path": "^0.12.7",
     "prettier": "^2.5.1",
     "roboto-npm-webfont": "^1.0.1",
