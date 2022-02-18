@@ -6,7 +6,7 @@
   },
   "version": "0.0.0",
   "scripts": {
-    "start" : "node server.js",
+    "start": "node server.js",
     "ng": "ng",
     "api-ui": "ng api-ui",
     "build": "ng build",
