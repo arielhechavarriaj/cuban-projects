@@ -1,5 +1,4 @@
-  {
-  "name": "Cuban open source projects",
+{
   "description": "Awesome list of Cuban open source projects. Just to know what is being openly developed in Cuba...",
   "author": {
     "name": "Ariel Hechavarria Jardines",
@@ -7,12 +6,13 @@
   },
   "version": "0.0.0",
   "scripts": {
+    "start" : "node server.js",
     "ng": "ng",
-    "start": "ng serve",
     "api-ui": "ng api-ui",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "heroku-postbuild": "ng build — prod"
   },
   "private": true,
   "dependencies": {
@@ -29,10 +29,12 @@
     "@datorama/akita": "^7.1.1",
     "@datorama/akita-ngdevtools": "^7.0.0",
     "axios": "^0.25.0",
+    "express": "^4.17.3",
     "material-icons": "^1.10.6",
     "ng-animate": "^1.0.0",
     "ngx-loading": "^8.0.0",
     "ngx-skeleton-loader": "^4.0.0",
+    "path": "^0.12.7",
     "prettier": "^2.5.1",
     "roboto-npm-webfont": "^1.0.1",
     "rxjs": "~7.4.0",
@@ -55,5 +57,9 @@
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
     "typescript": "~4.4.3"
+  },
+  "engines": {
+    "node": "14.18.0",
+    "npm": "8.1.3"
   }
 }

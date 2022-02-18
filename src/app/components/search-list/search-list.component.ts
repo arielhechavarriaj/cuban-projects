@@ -72,8 +72,14 @@ export class SearchListComponent implements OnInit {
   ngOnInit() {
     /**Get all the categories from the service */
     this.cubanApiService.getCategories().subscribe((response: any) => {
-      this.categories = response;
-      this.searchResult=response;
+      if(response){
+        this.categories = response;
+        this.searchResult=response;
+      }
+      else{
+        this.categories = [];
+        this.searchResult=[];      }
+
     });
   }
 
