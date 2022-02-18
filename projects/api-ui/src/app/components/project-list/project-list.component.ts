@@ -31,7 +31,6 @@ this.reload();
 
   reload(){
     this.projectApi.getProjects().subscribe((data:any) => {
-      console.log('Tenemos projectos!!',data.projectList)
       this.ProjectData = data.projectList;
 this.dataSource.data=this.ProjectData;
 

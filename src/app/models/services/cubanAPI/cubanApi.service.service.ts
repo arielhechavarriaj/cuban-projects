@@ -8,18 +8,14 @@ import { map, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class CubanAPIService {
-  apiUrl = 'http://localhost:3000/api/v1/';
-  apiURLProjects = 'http://localhost:3000/api/v1/' + 'projects';
+  apiUrl = 'https://cuba-opensource-api.herokuapp.com/';
+  apiURLProjects = 'https://cuba-opensource-api.herokuapp.com/projects';
   constructor(private http: HttpClient) {}
   getCategories(): Observable<any[]> {
-    return this.http.get<any[]>('http://localhost:3000/api/v1/categories');
+    return this.http.get<any[]>(`${this.apiUrl}categories`);
   }
 
-  getProjectsByCategory(categoryId: string): Observable<any[]> {
-    return this.http.get<any[]>(
-      `http://localhost:3000/api/v1/projectsByCategory/${categoryId}`
-    );
-  }
+
 
   getProjects(categoriesFilter?: string[]): Observable<Project[]> {
     let params = new HttpParams();

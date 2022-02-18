@@ -37,7 +37,6 @@ export class AddProjectComponent implements OnInit {
   constructor(
     public fb: FormBuilder,
     private router: Router,
-    private ngZone: NgZone,
     private projectApi: CubanAPIService
   ) {
 

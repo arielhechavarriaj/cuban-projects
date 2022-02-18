@@ -3,7 +3,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { Project, ProjectscubanOpenSource } from 'src/assets/projects';
+import { Project } from 'src/assets/projects';
 
 
 @Injectable({
@@ -12,23 +12,19 @@ import { Project, ProjectscubanOpenSource } from 'src/assets/projects';
 export class CubanAPIService {
   apiUrl = 'http://localhost:3000/api/v1/';
   apiURLProjects = 'http://localhost:3000/api/v1/' + 'projects';
-  constructor(private http: HttpClient) {}
+ constructor(private http: HttpClient) {}
   getCategories(): Observable<any[]> {
-    return this.http.get<any[]>('http://localhost:3000/api/v1/categories');
+    return this.http.get<any[]>(`${this.apiUrl}categories`);
   }
 
-  getProjectsByCategory(categoryId: string): Observable<any[]> {
-    return this.http.get<any[]>(
-      `http://localhost:3000/api/v1/projectsByCategory/${categoryId}`
-    );
-  }
+
 
   getProjects(categoriesFilter?: string[]): Observable<Project[]> {
     let params = new HttpParams();
     if (categoriesFilter) {
       params = params.append('categories', categoriesFilter.join(','));
     }
-    return this.http.get<Project[]>(this.apiURLProjects, { params: params });
+    return this.http.get<Project[]>(this.apiUrl+"projects", { params: params });
   }
 
   createProject(projectData: FormData): Observable<Project> {
