@@ -64,7 +64,7 @@ export class HeaderAppComponent implements OnInit {
   }
 
   openGithub() {
-    window.open('https://github.com/leiraStudio/cuban-opensource');
+    window.open('https://github.com/Rebelion-JM/cuban-projects');
   }
 
 
