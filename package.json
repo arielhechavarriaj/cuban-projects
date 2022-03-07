@@ -10,7 +10,7 @@
     "start": "node server.js",
     "ng": "ng",
     "api-ui": "ng api-ui",
-    "build": "ng build",
+    "build": "ng build --prod --base-href",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "heroku-postbuild": "ng build "
